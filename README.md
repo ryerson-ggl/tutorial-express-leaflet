@@ -295,17 +295,23 @@ html, body, #map {
 }
 ```
 
-## Final Step. Running the Server
+## Step 7. Running the Server
+
+### 7.1 Final Project Structure
 
 After going through steps 1 to 6, you should have a file structure that looks similar to the following (node_modules not shown):
 
 ![final_structure](images/final_structure.png)
+
+### 7.2 Run the express Server
 
 Run the express server with the following command:
 
 ```
 npm start
 ```
+
+### 7.3 Viewing the Client Side Browser
 
 By default, express runs on port `3000` on `localhost`, which can be accessed in the browser by going to:  
   
@@ -314,3 +320,7 @@ By default, express runs on port `3000` on `localhost`, which can be accessed in
 Your browser should display a map that looks similar to the one below:
 
 ![webmap](images/webmap.png)
+
+### 7.4 Shutting Down the express Server
+
+When you are done running the server, shut it down by pressing `Ctrl + C` and then answering `yes` to the user prompt asking for termination.
