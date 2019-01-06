@@ -1,6 +1,7 @@
 # Tutorial: Creating an Express Node.js Server for a Simple Leaflet Webmap
 
 Richard Wen <rwen@ryerson.ca>  
+GIS and GeoCollaboration Lab (GGL) at Ryerson University  
   
 A tutorial for creating a leaflet webmap with express in Node.js
 
