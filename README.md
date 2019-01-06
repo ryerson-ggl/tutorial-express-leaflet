@@ -17,4 +17,4 @@ npm install -g express-generator
 
 Open a [command line interface](https://en.wikipedia.org/wiki/Command-line_interface):
 
-![command_line](images/command_ling.gif)
+![command_line](images/command_line.gif)
