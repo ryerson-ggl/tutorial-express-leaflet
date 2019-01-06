@@ -29,7 +29,7 @@ Create an express project with the `express` command, replacing `<project_name>`
 express <project_name>
 ```
 
-A folder named `<project_name>` will be created with the following structure (may change with `express --version` that is not 4.16.0):
+A folder named `<project_name>` will be created with the following structure inside (note that the structure may change with `express --version` that is not 4.16.0):
 
 * `/bin`: folder containing executable code
 	* `www`: executable file for starting the server
@@ -46,4 +46,7 @@ A folder named `<project_name>` will be created with the following structure (ma
 	* `layout.jade`: template file for defining the overall layout of the html content
 * `app.js`: JavaScript file that contains code needed to create and run your express server or application
 * `package.json`: [JSON](https://www.json.org/) structured [package file](https://docs.npmjs.com/files/package.json) holding all the dependencies and information about your project (can be modified with the [npm](https://docs.npmjs.com/cli/npm) command)
-	
+
+![project_structure](images/project_structure.png)
+
+## 
