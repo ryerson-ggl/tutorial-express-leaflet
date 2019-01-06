@@ -30,7 +30,7 @@ Create an express project with the `express` command, replacing `<project_name>`
 * `<project_name>` should be a valid folder name with no spaces and starting with a letter
 
 ```
-express <project_name>
+express <project_name> --no-view
 ```
 
 ### 2.3 Inspect the Project Folder Structure
@@ -39,21 +39,19 @@ A folder named `<project_name>` will be created with the following structure ins
 
 ![project_structure](images/project_structure.png)
 
+* `app.js`: JavaScript file that contains code needed to create and run your express server or application
+* `package.json`: [JSON](https://www.json.org/) structured [package file](https://docs.npmjs.com/files/package.json) holding all the dependencies and information about your project (can be modified with the [npm](https://docs.npmjs.com/cli/npm) command)
 * `/bin`: folder containing executable code
 	* `www`: executable file for starting the server
 * `/public`: folder containing files served to the client side or front end
+	* `index.html`: landing page served to the clients
 	* `/images`: folder containing images to be served to clients
 	* `/javascripts`: folder containing [JavaScript](https://www.w3schools.com/js/) code files to be served to clients
 	* `/stylesheets`: folder containing [Cascading Style Sheets (CSS)](https://www.w3schools.com/css/) files to be served to clients
+		* `style.css`: CSS file used to define how your web page elements will look
 * `/routes`: folder containing JavaScript files for defining [routes](https://expressjs.com/en/guide/routing.html) that direct how the server responds to client requests (these files are often used in file `app.js`)
 	* `index.js`: defines the response to client requests at `<address>/` depending on how it is used in file `app.js`
 	* `users.js`: defines the response to client requests at `<address>/users` depending on how it is used in file `app.js`
-* `/views`: [template files](https://expressjs.com/en/guide/using-template-engines.html) ((jade)[http://jade-lang.com/] by default) for defining how the user will see the html pages served to them
-	* `error.jade`: template file for displaying an error page
-	* `index.jade`: template file for displaying the landing page `<address>/`
-	* `layout.jade`: template file for defining the overall layout of the html content
-* `app.js`: JavaScript file that contains code needed to create and run your express server or application
-* `package.json`: [JSON](https://www.json.org/) structured [package file](https://docs.npmjs.com/files/package.json) holding all the dependencies and information about your project (can be modified with the [npm](https://docs.npmjs.com/cli/npm) command)
 
 ## Step 3. Install Project Dependencies
 
@@ -83,9 +81,42 @@ npm install --save leaflet
 
 ## Step 4. Creating a leaflet Map
 
-Create a file for the leaflet map by sending an empty line with `echo` into `>` a file called `webmap.js`:
+### 4.1 Create leaflet JavaScript File
+
+Create a file for the leaflet map by sending an empty line with `echo.` into `>` a file called `webmap.js`:
 
 ```
-echo > webmap.js
+echo. > webmap.js
 ```
 
+### 4.2 Add leaflet Code
+
+Open `webmap.js` for editing and add the following JavaScript code:
+
+```javascript
+// Import the leaflet package
+var L = require('leaflet');
+
+// Creates a leaflet map binded to an html <div> with id "map"
+// setView will set the initial map view to the location at coordinates
+// 13 represents the initial zoom level
+var map = L.map('map').setView([43.659752, -79.378161], 13);
+
+// Adds the basemap tiles to your web map
+// Additional providers are available at: https://leaflet-extras.github.io/leaflet-providers/preview/
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
+}).addTo(map);
+
+// Adds a popup marker to the webmap for GGL address
+L.marker([43.659752, -79.378161]).addTo(map)
+	.bindPopup(
+		'Monetary Times Building, MON 304<br>' +
+		'341 Victoria Street<br>' + 
+		'Toronto, Ontario, Canada<br>' +
+		'M5B 2K3<br><br>' + 
+		'Tel: 416-9795000 Ext. 5192')
+	.openPopup();
+```
