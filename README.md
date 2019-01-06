@@ -1,4 +1,4 @@
-# tutorial-express-leaflet
+# Tutorial: Creating an Express Node.js Server for a Simple Leaflet Webmap
 
 Richard Wen <rwen@ryerson.ca>  
   
@@ -17,7 +17,7 @@ express -h
 
 ## Step 2. Create an express Project
 
-Using the installed software, we can then create an express project folder with the `express` command. This folder will contain all the code required to serve our web pages as (Hyper Text Markup Lanauge (HTML))[https://www.w3schools.com/html/] files.
+Using the installed software, we can then create an express project folder with the `express` command. This folder will contain all the code required to serve our web pages as Hyper Text Markup Lanauge (HTML)[https://www.w3schools.com/html/] files.
 
 ### 2.1 Open a Command Line Interface (CLI)
 
@@ -105,21 +105,22 @@ var L = require('leaflet');
 
 // Creates a leaflet map binded to an html <div> with id "map"
 // setView will set the initial map view to the location at coordinates
-// 13 represents the initial zoom level
-var map = L.map('map').setView([43.659752, -79.378161], 13);
+// 13 represents the initial zoom level with higher values being more zoomed in
+var map = L.map('map').setView([43.659752, -79.378161], 20);
 
 // Adds the basemap tiles to your web map
 // Additional providers are available at: https://leaflet-extras.github.io/leaflet-providers/preview/
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
 	subdomains: 'abcd',
-	maxZoom: 19
+	maxZoom: 21
 }).addTo(map);
 
 // Adds a popup marker to the webmap for GGL address
-L.marker([43.659752, -79.378161]).addTo(map)
+L.circleMarker([43.659752, -79.378161]).addTo(map)
 	.bindPopup(
-		'Monetary Times Building, MON 304<br>' +
+		'MON 304<br>' + 
+		'Monetary Times Building<br>' +
 		'341 Victoria Street<br>' + 
 		'Toronto, Ontario, Canada<br>' +
 		'M5B 2K3<br><br>' + 
@@ -130,12 +131,12 @@ L.marker([43.659752, -79.378161]).addTo(map)
 
 ### 4.4 Create a HTML Divider for the leaflet Webmap
 
-Notice that in the code of [Section 4.3](43-add-leaflet-code-to-the-file), a divider `<div>` with the id `map` is required to create the leaflet webmap. 
+Notice that in the code of [Section 4.3](#43-add-leaflet-code-to-the-file), a divider `<div>` with the id `map` is required to create the leaflet webmap. 
   
 Open `public/index.html` for editing and replace everything with the following HTML code:
 
 * Notice that we added a divider with id `map` to create our leaflet webmap in
-* The width and height of the divider must be set for the webmap to show
+* Note that the width and height of the divider must be set for the webmap to show (we will do this later in a CSS file)
 
 ```html
 <html>
@@ -201,7 +202,7 @@ This allows us to run the same command for bundling the leaflet code with a more
 npm run build
 ```
 
-### 5.5 Adding the Bundled leaflet Code
+### 5.3 Adding the Bundled leaflet Code
 
 You will now notice that `public/javascripts/webmap.js` exists. This is the bundled version of your leaflet webmap source code, and will need to be added to the `public/index.html` file in order to display your webmap.  
   
@@ -216,9 +217,9 @@ Replace the `public/index.html` code with the following:
 	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
-<script src="javascripts/webmap.js"></script>
 <body>
-	<div id="map" style="width: 100%; height: 100%;"></div>
+	<div id="map"></div>
+	<script src="javascripts/webmap.js"></script>
 </body>
 
 </html>
@@ -236,7 +237,7 @@ Leaflet requires a CSS file in `node_modules/leaflet/dist/leaflet.css`, which ca
 cp node_modules/leaflet/dist/leaflet.css public/stylesheets/leaflet.css
 ```
 
-You will have to also open `public/index.html` and edit it to incluide the `stylesheets/leaflet.css` file:
+You will have to also open `public/index.html` and edit it to include the `stylesheets/leaflet.css` file:
 
 ```html
 <html>
@@ -257,7 +258,7 @@ You will have to also open `public/index.html` and edit it to incluide the `styl
 </html>
 ```
 
-It is also important to include the CSS file into your build script in `package.json` so that it is updated everytime you rebuild `webmap.js`:
+It is also important to include the CSS file into your build script in `package.json` so that it is updated everytime you rebuild `webmap.js` with `npm run build`:
 
 ```json
 {
@@ -280,7 +281,7 @@ It is also important to include the CSS file into your build script in `package.
 
 ### 6.2 Improving the CSS
 
-You may wish to have a full page webmap, which can be done by replacing the contents of the `public/stylesheets/style.css` file with the following:
+Since leaflet requires that the dimensions be specified for the webmap divider, we can can replace the contents of the `public/stylesheets/style.css` file with the following to define the width and height of the webmap:
 
 ```css
 body {
