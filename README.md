@@ -4,24 +4,28 @@ Richard Wen <rwen@ryerson.ca>
   
 A tutorial for creating a leaflet webmap with express in Node.js
 
-## 1. Install Software
+## Step 1. Install Software
 
-**Step 1.1** Install [Node.js](https://nodejs.org/)
-**Step 1.2** Install [express-generator](https://www.npmjs.com/package/express-generator) globally `-g` with [npm](https://docs.npmjs.com/cli/install)
-**Step 1.3** Check that the `express` command works by using the `-h` help option
+1. Install [Node.js](https://nodejs.org/)
+2. Install [express-generator](https://www.npmjs.com/package/express-generator) globally `-g` with [npm](https://docs.npmjs.com/cli/install)
+3. Check that the `express` command works by using the `-h` help option
 
 ```
 npm install -g express-generator
 express -h
 ```
 
-## 2. Create an express project
+## Step 2. Create an Express Project
 
-**Step 2.1** Open a [command line interface](https://en.wikipedia.org/wiki/Command-line_interface):
+### 2.1 Open a Command Line Interface (CLI)
+
+Open a [command line interface](https://en.wikipedia.org/wiki/Command-line_interface) or terminal:
 
 ![command_line](images/command_line.gif)
 
-**Step 2.2** Create an express project with the `express` command, replacing `<project_name>` with the name of your project:
+### 2.2 Generate a Project Folder with the express Command
+
+Create an express project with the `express` command, replacing `<project_name>` with the name of your project:
 
 * `<project_name>` should be a valid folder name with no spaces and starting with a letter
 
@@ -29,7 +33,9 @@ express -h
 express <project_name>
 ```
 
-**Step 2.3** A folder named `<project_name>` will be created with the following structure inside (note that the structure may change with `express --version` that is not 4.16.0):
+### 2.3 Inspect the Project Folder Structure
+
+A folder named `<project_name>` will be created with the following structure inside (note that the structure may change with `express --version` that is not 4.16.0):
 
 ![project_structure](images/project_structure.png)
 
@@ -49,4 +55,37 @@ express <project_name>
 * `app.js`: JavaScript file that contains code needed to create and run your express server or application
 * `package.json`: [JSON](https://www.json.org/) structured [package file](https://docs.npmjs.com/files/package.json) holding all the dependencies and information about your project (can be modified with the [npm](https://docs.npmjs.com/cli/npm) command)
 
-## 
+## Step 3. Install Project Dependencies
+
+### 3.1 Change directory
+
+Move into the project folder, where `<project_name>` is the name of the folder you created in [Step 2.2](#step-22-generate-a-project-folder-with-the-express-command):
+
+```
+cd <project_name>
+```
+
+### 3.2 Install express Dependencies
+
+Inside your `<project_name>` folder, install the dependencies with `npm`, where a folder called `/node_modules` will contain the code files of the installed dependencies:
+
+```
+npm install
+```
+
+### 3.3 Install leaflet as a Dependency
+
+Install leaflet with `npm install` and save it as a dependency `--save` to `package.json`:
+
+```
+npm install --save leaflet
+```
+
+## Step 4. Creating a leaflet Map
+
+Create a file for the leaflet map by sending an empty line with `echo` into `>` a file called `webmap.js`:
+
+```
+echo > webmap.js
+```
+
