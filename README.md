@@ -129,6 +129,8 @@ L.circleMarker([43.659752, -79.378161]).addTo(map)
 	.openPopup();
 ```
 
+Save the added `webmap.js` file.
+
 ### 4.4 Create a HTML Divider for the leaflet Webmap
 
 Notice that in the code of [Section 4.3](#43-add-leaflet-code-to-the-file), a divider `<div>` with the id `map` is required to create the leaflet webmap. 
@@ -155,6 +157,8 @@ Open `public/index.html` for editing and replace everything with the following H
 </html>
 ```
 
+Save the modified `public/index.html` file.
+
 ## Step 5. Building the leaflet Webmap Code for the Client Side
 
 Since `webmap.js` is not served to the client side and requires the server's backend software to run, it needs to be built into client side code and stored inside the `public` folder in order to display in the browser.
@@ -175,7 +179,7 @@ After installing browserify, we can build and bundle the leaflet code from `webm
 browserify webmap.js -o public/javascripts/webmap.js
 ```
 
-For convenience, we can add the browserify bundling command under `scripts -> build` in the file `package.json`:
+For convenience, we can add the browserify bundling command under `scripts: build` in the file `package.json` (saving after you add this code):
 
 ```json
 {
@@ -184,7 +188,7 @@ For convenience, we can add the browserify bundling command under `scripts -> bu
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-	"build": "browserify webmap.js -o public/javascripts/webmap.js"
+    "build": "browserify webmap.js -o public/javascripts/webmap.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -225,6 +229,8 @@ Replace the `public/index.html` code with the following:
 </html>
 ```
 
+Save the modified `public/index.html` file.
+
 ## Step 6. Final Touches
 
 A set of final touches need to be made for better web map appearance and for the leaflet code to display the map properly.
@@ -237,7 +243,7 @@ Leaflet requires a CSS file in `node_modules/leaflet/dist/leaflet.css`, which ca
 cp node_modules/leaflet/dist/leaflet.css public/stylesheets/leaflet.css
 ```
 
-You will have to also open `public/index.html` and edit it to include the `stylesheets/leaflet.css` file:
+You will have to also open `public/index.html` and edit/save it to include the `stylesheets/leaflet.css` file:
 
 ```html
 <html>
@@ -293,6 +299,8 @@ html, body, #map {
 	width: 100%;
 }
 ```
+
+Save the modified `public/stylesheets/style.css` file.
 
 ## Step 7. Running the Server
 
